@@ -17,6 +17,9 @@ def get_primes(max_):
 
 get_primes(100)
 
+#another useless comment
+
+
 #%% Lab Lesson 2 
 
 
