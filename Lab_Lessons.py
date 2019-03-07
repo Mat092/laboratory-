@@ -21,6 +21,12 @@ get_primes(100)
 
 
 #%% Lab Lesson 2 
+def inc(x):
+    return x+1
+
+assert inc(3) == 4
+assert inc(5) == 4
+assert inc(6) == 4
 
 
 
