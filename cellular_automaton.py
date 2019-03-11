@@ -15,8 +15,7 @@ def generate_state():
 
 def evolve(stato):
     new_state = ""
-    for i in range(len(stato)):
-        print(i)
+    for i in range(len(stato))
         triplet = stato[i] + stato[i-1] + stato[i+1]
         char = rule30[triplet]
         new_state = new_state + char
@@ -46,4 +45,3 @@ def test_generation_single_alive():
     
     
 evolve("......0......")
-    
