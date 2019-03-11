@@ -33,21 +33,26 @@ import pytest
 
 #%% Exercise for today 
 
-rule30 = {"000": '.',
-          "00.": '.',
-          "0.0": '.',
-          "...": '.',
-          "0..": '0',
-          ".00": '0',
-          ".0.": '0',
-          "..0": '0',
+rule30 = {"000": '1',
+          "001": '1',
+          "010": '1',
+          "111": '1',
+          "011": '0',
+          "100": '0',
+          "101": '0',
+          "110": '0',
          }
 
 def generate_state():
-    return ".....0......"
+    return "11111111110111111111"
 
 def evolve(stato):
-    return stato
+    new_state = ""
+    bounds = stato[-1] + stato + stato[0]
+    for i in range(1,len(bounds)-1):
+        key = bounds[i-1:i+2]
+        new_state = new_state + rule30[key]
+    return new_state
 
 def simulation(nsteps):
     initial_state = generate_state()
@@ -58,31 +63,34 @@ def simulation(nsteps):
         states_seq.append(new_state)
     return states_seq
 
+matrix = simulation(50)
+
+image = [int(x) for i in matrix 
+                 for x in i]
+
+image
+
+import pylab as plt
+
+plt.imshow(image)
+
+
+
 ######################################################## TEST 
 
-def test_generation_valid_state():
-    state = generate_state()
-    assert set(state) == {'.', '0'}
+#def test_generation_valid_state():
+#    state = generate_state()
+#    assert set(state) == {'.', '0'}
+#    
+#
+#def test_generation_single_alive():
+#    state = generate_state()
+#    num_of_0 = sum(1 for i in state if i=='0')
+#    assert num_of_0 == 1
     
 
-def test_generation_single_alive():
-    state = generate_state()
-    num_of_0 = sum(1 for i in state if i=='0')
-    assert num_of_0 == 1
     
-    
-#%% Logging and debugging 
-
-
-def myfunc(a,b):
-    a = sorted(a)
-    b = sorted(b)
-    return a[0]>b[0]
-
-myfunc([3,2],[6,5])
-    
-    
-#%%   
+#%%
     
     
     
