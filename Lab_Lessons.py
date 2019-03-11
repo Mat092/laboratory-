@@ -33,6 +33,9 @@ import pytest
 
 #%% Exercise for today 
 
+import pylab as plt
+import numpy as np 
+
 rule30 = {"000": '1',
           "001": '1',
           "010": '1',
@@ -44,7 +47,10 @@ rule30 = {"000": '1',
          }
 
 def generate_state():
-    return "11111111110111111111"
+    return "1111111111111111111111111111111111111111111111110111111111111111111111111111111111111111111111111111"
+
+
+
 
 def evolve(stato):
     new_state = ""
@@ -63,17 +69,10 @@ def simulation(nsteps):
         states_seq.append(new_state)
     return states_seq
 
-matrix = simulation(50)
-
-image = [int(x) for i in matrix 
-                 for x in i]
-
-image
-
-import pylab as plt
-
-plt.imshow(image)
-
+matrix = simulation(100) #I saved  the data from the simulation
+image = [[int(x) for x in i] for i in matrix ] # transforms the data into int, a readable type for imshow 
+                 
+plt.imshow(image, cmap = "gray") #showcase the image 
 
 
 ######################################################## TEST 
@@ -91,11 +90,23 @@ plt.imshow(image)
 
     
 #%%
+import numpy as np
+
+def generate_state_2d():
+    stato = np.ones(shape=(100,100))
+    stato[50,50] = 0
+    return stato
+
     
+def evolve_2d(stato):
+    new_state = np.empty(shape = (100,100))
+    bounded = np.pad(stato,pad_width = 1,mode = "constant")
+    print(len(bounded[1]))
+    for i in range(1,len(bounded[1])-1):
+        for j in range(len(i)):
+            
     
-    
-    
-    
+evolve_2d(generate_state_2d())
     
     
     

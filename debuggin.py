@@ -41,6 +41,8 @@ import logging #functions tha behave as a print basically.
 #from eliot import start_action #no module name eliot 
 #again, better than the std one
 
-logging.ERROR
+#%%Linters 
+
+
 
 
