@@ -29,7 +29,18 @@ def myfunc(a,b):
 
 myfunc([3,2],[6,5])
 
-#%%
+#%% exception 
 
+#from grappa import should, expect #no module name grappa here.
+#is basically english 
+
+#%% Logging 
+
+import logging #functions tha behave as a print basically.
+
+#from eliot import start_action #no module name eliot 
+#again, better than the std one
+
+logging.ERROR
 
 
