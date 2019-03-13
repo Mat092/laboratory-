@@ -1,5 +1,3 @@
-#%%
-
 rule30 = {"000": '.',
           "00.": '.',
           "0.0": '.',
@@ -11,15 +9,15 @@ rule30 = {"000": '.',
          }
 
 def generate_state():
-    return ".....0......"
+    return ".......0000000000000.........00000000000.............."
 
 def evolve(stato):
+    state_with_boundaries = stato[-1] + stato + stato[0] #Circular Bounds Condition
     new_state = ""
-    for i in range(len(stato)):
-        print(i)
-        triplet = stato[i] + stato[i-1] + stato[i+1]
-        char = rule30[triplet]
-        new_state = new_state + char
+    for i in range(1,len(state_with_boundaries)-1):
+        key = state_with_boundaries[i-1 : i+2]
+        new_char = rule30[key]
+        new_state = new_state + new_char
     return new_state
 
 def simulation(nsteps):
@@ -43,7 +41,13 @@ def test_generation_single_alive():
     num_of_0 = sum(1 for i in state if i=='0')
     assert num_of_0 == 1
     
-    
-    
-evolve("......0......")
-    
+simul = simulation(100)
+
+import pylab as plt
+
+
+
+
+
+
+
