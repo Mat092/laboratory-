@@ -472,6 +472,70 @@ tons of utilities:
     integrals (definite or indefinitve(really hard))
 """
 
+#%%Differential equations and fitting 
+
+from scipy.integrate import odeint 
+
+"""
+integration of the function:
+    
+    dy/dt = ay
+    y(0) = y0
+"""
+"""
+define a function and then use it as a variables:
+    
+    function are OBJECT, so I can passa function as argument of 
+    other functions
+
+"""
+
+def derivative(y,t):
+    return -y
+
+time = np.linspace(0, 10, 20)
+y0 = 10.0
+# integration of the differential equation: (function, initial condition, time)
+yt = odeint(derivative, y0, time) 
+
+
+#plotting, reasonable looking graph 
+fig, ax = plt.subplots()
+
+ax.scatter(time, yt, marker = 'o', color = 'k', label = 'exponential')
+ax.set_xlabel('time', fontsize = 14) #labels
+ax.set_ylabel('y(t)', fontsize = 14)
+ax.set_title('Exponential ODEint', fontsize = 16) #title
+ax.legend(loc = 'best') #set the legend 
+
+"""
+use scatter plot ore a line plot ?
+
+
+the best graph type is :
+    
+    what are we trying to show? technically we know onli the points we sample
+    scattre should be the correct information
+    
+    storytelling : lineplot
+    
+    it dependes on what we are trying to achieve 
+"""
+
+y_obs = yt.ravel() + np.random.randn(len(yt))*0.5 #add random noise
+
+fig, ax = plt.subplots()
+
+ax.plot(time, y_obs, 'bo', label = 'sperimentali') #real data 
+ax.plot(time, yt, 'k-', label = 'teorici') #theoretical data 
+ax.legend(loc = 'best') 
+
+"""
+scipy.optimize is a bit too simple, for complex data we need to use
+something else
+"""
+
+
 
 
 
