@@ -36,4 +36,5 @@ time = run_time - start_time
 
 
 print(pi)
+print("Precision computation : ", np.abs(np.mean(pi)-np.pi))
 print(time)
