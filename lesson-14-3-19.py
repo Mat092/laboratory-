@@ -323,7 +323,154 @@ ax2.imshow(pix[:,:,1], cmap=plt.cm.Greens)
 ax3.imshow(pix[:,:,2], cmap=plt.cm.Blues)
 ax4.imshow(pix)
 
+#%%Advanced numerical computation 
+"""
+scikit image is an extension of scipy.ndimage
+"""
+
+"""
+visualizatin in python is a +wide horizon, matplotlib is the easier and more
+versatile 
+
+there are several other that provide more functionality, but they aren't 
+interactive 
+
+with matplolib and seaborn you have almost everything 
+"""
+"""
+pylab is a mixture of scipy and matplolib for plotting:
+    but the origin of this package is quite recent (as python 15 years)
+    before there were only matlab: matplotlib come from matlab and it can 
+    have some stuff from it.
+"""
+
+import matplotlib.pylab as plt
+import numpy as np
+
+data = np.random.randn(1000)
+
+fig, ax = plt.subplots() #create a figure and an axis
+
+"""
+whenrver you create a plot: 
+    
+    figure, its the overall scheme, groups of axes 
+    
+    axes: fill the all figure 
+    
+"""
+ax.plot(data)
+
+plt.show()
+
+"""
+Are they really Gaussian?
+"""
+
+data = np.random.randn(1000,2)
+
+fig, ax = plt.subplots()
+
+ax.hist2d(data[:,0], data[:,1], bins = 30)
+
+print()
+
+"""
+or a scatter plot 
+ax.scatter(x,y)
+
+"""
 #%%
+"""
+for 3d visualization
+
+"""
+
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
+
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+
+X, Y = np.mgrid[-3:3:0.05, -3:3:0.05]# creating a bidimensional grid
+R = np.sqrt(X**2 + Y**2)
+S = np.sinc(R)
+
+surf = ax.plot_surface(X, Y, S, cmap=cm.coolwarm)
+
+#%%
+
+"""
+I can also specify how many subplots I want in a figure 
+
+"""
+
+
+x = np.random.randn(1000) 
+y = x**2 + 0.1 + np.random.randn(len(x)) 
+
+fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12, 4))
+
+ax1.scatter(x, y, marker='^')
+ax2.hist(x, alpha=0.5, color='r', density=True, bins=33)
+ax3.hist(y, label='transformed data', histtype='step')
+ax3.legend()
+ax3.set_ylabel("$x^2$ value counts")
+
+fig.tight_layout()
+
+#%%Linear Algebra with numpy and scipy 
+
+
+import numpy as np
+import scipy as sp
+
+"""
+scipy is more extended in linear algebra overall 
+"""
+
+
+a = np.array([[1,2,3,4,5]])
+b = np.array([1,2,3,4,5])
+c = np.array([[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15]])
+
+print(np.dot(b, b)) # scalar product of b and b
+print(sp.dot(b, b))
+print(b@b) #recommended 
+
+"""
+tons of linear algebra operations on slides 
+"""
+
+#%% Eigenvalue and Eigenvectors 
+
+""""
+how to deal with sparse matrices? most method are written for this purpose.
+
+"""
+
+#%%Symbolic algebra 
+
+"""
+can be really really useful for physicists, we want to use symbol as a 
+mathematical symbol
+"""
+import sympy
+
+x = sympy.Symbol("x") #Non negative real symbol 
+print(x)
+
+y = 1 + x + x**2 # y is a function of x 
+
+"""
+tons of utilities:
+    limits
+    
+    derivative 
+    
+    integrals (definite or indefinitve(really hard))
+"""
 
 
 
