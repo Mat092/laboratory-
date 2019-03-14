@@ -22,9 +22,7 @@ y = np.random.uniform(-1,1, (Nshots,Nexp))
 
 res = x**2 + y**2
 
-true_value = res < 1
-
-Nhits = np.sum(true_value, axis = 0)
+Nhits = np.sum(res<1, axis = 0)
 
 pies = Nhits/Nshots*4.
 
