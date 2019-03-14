@@ -157,31 +157,173 @@ a numpy array support vectorized parallel computation:
 import numpy as np 
 
 a = np.array([1,2,3,4])
-print("a = ", a)
+#print("a = ", a)
 
 b = np.array([[1,2,3,4],[5,6,7,8]])
-print("b = ", b)
+#print("b = ", b)
 
 """
 we can have any dimensions we wnant for our array.
 """
+a.shape
+a.dtype #array are homogenous (same type of object 
+              #inside
+
+a = [1,2,3,4]
+a_array = np.array(a)
+b_array = np.asarray(list(a))
+print(a_array.shape)
+print(b_array.shape)
+print(a_array.dtype)
+print(len(a_array))
+
+
+"""
+different way of creating an array :
+    
+    zeroes:
+        create an array of zeroes of the dimension you need 
+    ones :
+        create an array of ones of the dimension you need 
+    empty :
+        in this case, it print zeroes (are almost zeroes).
+        But it si a mallock, ou nedd to delete the cells and 
+        rewrite it 
+
+the result of an operation is ussually put in a old array,
+so you don't waste time and memory 
+"""
+
+zero = np.zeros(10)
+zero 
+
+empty = np.empty((10,2))
+
+print(empty) 
+
+"""
+ranges are anothe rimportant way of creating an arrays 
+
+arange :
+    equivalent to range in python 
+    
+linspace :
+     slightly different: starting point and ending point 
+     (including them) annd then it specify a number of points 
+
+logspace: 
+    expnentially spaced number, not equally spaced as for linspace.
+    
+geomspace :
+    same as logspace, but with number not in log
+    
+    
+Numpy is really rich 
+"""
+
+"""
+slicing refer to the very number your are viewing: 
+    so deleting them, delete the true value in the memory.
+"""
+#%%
+import numpy as np 
+
+# the Sieve of Eratosthenes, numpy version
+N = 80
+a = np.arange(N)
+for i in range(2, N):
+    a[i*2::i] = 0 #take a slice of all the multiple of i 
+
+print(a)
+print(a[np.nonzero(a)]) #show the prime number 
 #%%
 
+"""
+Let's see how much faster numpy is:
+    it is realy faster, even of th wrong algorithm as before
+    
+    mean = np.mean(array)
+    
+    numpy doesn't bother with all the python operations.
+"""
+import numpy as np 
+import time
+
+start_time = time.time() # inizia a contare il tempo
+N = int(1e7)
+x = np.random.rand(N)
+mean_for_1 = 0.0
+mean_for_2 = 0.0
+for x_i in x:
+    mean_for_1 += x_i/N
+    mean_for_2 += x_i
+mean_for_2 /= N
+print ("Mean 1 = {:.32f}".format(mean_for_1))
+print ("Mean 2 = {:.32f}".format(mean_for_2))
+print ("Calculated in {:.2g} sec".format(time.time()-start_time))
+
+start_time = time.time()
+mean_vec = np.mean(x)
+print ("Mean from numpy = {:.32f}".format(mean_vec))
+print ("Calculated in {:.2g} sec".format(time.time()-start_time))
+
+#%% Other useful things
+from numpy import random
+
+"""
+a lot of possiilitis even with this library 
+can ask for one number only, or arbitrary dimensional arrays.
+"""
 
 
+a = np.array([1, -2, 3.444, -2, 4.29, 6.98])
+b = np.array([2, -2, 3.44, -2., 5, 7])
+
+print("\n Some other operations \n")
+
+print(np.abs(a)) # absolute value 
+print(np.fabs(a)) # absolute value 
+print(np.sqrt(a)) # square root NO Exceptions and error, just warnign???
+print(np.floor(a)) # the largest integer value less than or equal to x
+print(np.ceil(a)) # smallest integer value greater than or equal to x
 
 
+"""
+pay attention because NAN is contegious.
+"""
 
 
+a = np.array([1, -2, 3.444, -2, 4.29, 6.98])
+b = np.array([2, -2, 3.44, -2., 5, 7])
+
+print ("\n SOME ordering operations \n")
+print(np.sort(a)) # SORTING ELEMENTS
+print(np.argsort(a)) # SORTING INDICES
+print(np.where(a < 2)[0]) # INDICES WHERE CONDITION
+print(np.where(a > 2, 1, 0)) # (CONDITION, IF(CONDITION), ELSE)
+print(np.median(a)) # MEDIAN
+print(a[a>0]) # CONDITIONAL SELECTION
 
 
+#%%Example of images 
+from PIL import Image
+from IPython.display import display
+filename = "./fractal_wrongness.png"
+
+with Image.open(filename) as im:
+    print(im.size, im.mode)
+    pix = np.array(im)
+pix.shape
 
 
+import pylab as plt
+fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(12, 12))
+ax1.imshow(pix[:,:,0], cmap=plt.cm.Reds)
+ax2.imshow(pix[:,:,1], cmap=plt.cm.Greens)
+ax3.imshow(pix[:,:,2], cmap=plt.cm.Blues)
+ax4.imshow(pix)
 
-
-
-
-
+#%%
 
 
 
