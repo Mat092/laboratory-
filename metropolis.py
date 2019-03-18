@@ -2,6 +2,7 @@
 """
 Created on Thu Mar 14 17:24:40 2019
 
+
 @author: mattia.ceccarelli3
 """
 #%% exercise using numpy
@@ -20,9 +21,7 @@ Nexp = 100
 x = np.random.uniform(-1,1,(Nshots,Nexp))
 y = np.random.uniform(-1,1, (Nshots,Nexp))
 
-res = x**2 + y**2
-
-Nhits = np.sum(res<1, axis = 0)
+Nhits = np.sum(x**2 + y**2 < 1, axis = 0)
 
 pies = Nhits/Nshots*4.
 

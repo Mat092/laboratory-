@@ -56,5 +56,33 @@ Lossless Images = contains a point for each pixel (R,G,B,int)
     
 DICOM :medical format 
 
-stopped taking notes.
+stopped taking notes. 
 """
+
+#%%
+
+"""
+Snakemake
+"""
+
+rule all :
+    shell:
+        "echo 'hello world'> result.txt 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
