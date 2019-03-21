@@ -159,11 +159,36 @@ page = 'https://en.wikipedia.org/wiki/List_of_highest-grossing_films'
 wikitables = pd.read_html(page,)
 
 #%%
-wikitables[0].head()
+
+"""
+Manipulation 
+"""
+import numpy as np 
+import pandas as pd 
+
+wiki = "https://it.wikipedia.org/wiki/"
+url_popolazione = wiki + "Comuni_d%27Italia_per_popolazione"
+url_superficie = wiki + "Primi_100_comuni_italiani_per_superficie"
+
+comuni_popolazione = pd.read_html(url_popolazione, header=0)
+comuni_popolazione = comuni_popolazione[0]
+comuni_popolazione.head()
 
 
+comuni_superficie = pd.read_html(url_superficie, header=0)
+comuni_superficie = comuni_superficie[0]
+comuni_superficie.head()
 
+#%%
 
+comuni_superficie.groupby('Regione').mean()
 
+g = comuni_superficie.groupby('Regione')
+g.aggregate([np.mean, np.std, pd.Series.count])
+
+#%%
+"""
+Seaborn
+"""
 
 
