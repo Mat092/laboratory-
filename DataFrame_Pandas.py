@@ -191,4 +191,103 @@ g.aggregate([np.mean, np.std, pd.Series.count])
 Seaborn
 """
 
+import pandas as pd 
+import numpy as np
+
+url = 'https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv'
+iris = pd.read_csv(url)
+iris.info()
+#%%
+
+import seaborn as sns
+
+"""
+it changes the default behaviour of matplot lib. you can change it by changing 
+the style from matplotlib 
+"""
+
+
+sns.lmplot('sepal_length',
+           'sepal_width',
+               data=iris,
+               hue='species')
+
+"""
+automatic legend
+
+automatic label in axis etc...
+automatic species separator by colour etc...
+"""
+
+
+#%%
+"""
+Splitting by species 
+"""
+
+sns.lmplot('sepal_length',
+               'sepal_width',
+               data=iris,
+               col='species')
+
+#%% 
+"""
+Splittin byrow 
+"""
+
+sns.lmplot('sepal_length',
+               'sepal_width',
+               data=iris,
+               row='species')
+
+
+#%%
+"""
+grouping, for each group aplly a scatter plot of lentght vs width (sepal)
+
+
+
+"""
+
+import pylab as plt
+
+fg = sns.FacetGrid(data=iris,
+                       col='species',
+                       hue='species',
+                       height=4,
+                       aspect=0.9)
+fg.map(plt.scatter,
+       'sepal_length',
+       'sepal_width', 
+       s=50)
+fg.map(sns.regplot,
+       'sepal_length',
+       'sepal_width', 
+       scatter=False)
+fg.add_legend();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
