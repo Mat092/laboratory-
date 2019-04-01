@@ -43,4 +43,5 @@ nobel = pd.pivot_table(physics,
 
 
 
-sns.plot
+
+
