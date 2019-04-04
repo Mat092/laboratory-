@@ -71,7 +71,7 @@ parameter
 """
 
 """
-it guve sus the possibility to give any obj as long as is 
+it guve sus the possibility to give any obj as long as it has fit() and pdf()
 """
 dist1 = st.gamma(2.0, loc=0, scale=1)
 dist = st.gamma
@@ -92,10 +92,17 @@ class Fitter:
 myFitter1 = Fitter(distribution = st.gamma, floc = 0)
 myFitter2= Fitter(distribution=st.norm)
     
-sns.distplot(dist1.rvs(10_000), kde=False, fit = myFitter1)
+sns.distplot(dist1.rvs(10_000), kde=False, fit = myFitter2)
 
 
-#%%
+#%% Third Hour Extimated Cumulative Distribution 
+"""
+
+"""
+data = (5+plt.randn(100)*5)**2
+
+plot_ecdf(data)
+
 
 
 
