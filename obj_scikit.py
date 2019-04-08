@@ -39,16 +39,40 @@ except ValueError:
     pass
 
 #%%
-    
-"""
 
-"""
+@Dataclass
+class Animal:
+    name: str
+
+    def walk(self):
+        print(f"{self.name} is walking")
 
 
+class Dog(Animal):
+    def bark(self):
+        print(f"{self.name} is barking!")
+        
+class Snake(Animal):
+    def walk(self):
+        print(f"{self.name} is slithering!")
+        
+class Cat(Animal):
+    def walk(self):
+        super().walk()
+        print(f"{self.name} is wagging is tail!")
 
 
+s = Snake()
+d = Dog()
+a = Animal()
+c = Cat()
 
+a.walk()
 
+d.walk()
+d.bark()
+s.walk()
+c.walk()
 
 
 
