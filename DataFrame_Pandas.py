@@ -6,27 +6,28 @@ Created on Thu Mar 21 14:04:00 2019
 """
 
 """
-21/03/2019 Lesson 9 
+21/03/2019 Lesson 9
 
-DataFrame in pandas 
+DataFrame in pandas
 
 """
 
 #%%
-import pandas as pd 
+import pandas as pd
 
 data = pd.DataFrame([('Andrea', 24, 178, 'Male'),
                      ('Maria', 33, 154, 'Female'),
                      ('Luca', 30, 175, 'Male')],
-                    columns=['name', 'age', 'height', 'sex'])
+                    columns = ['name', 'age', 'height', 'sex'])
+
 data.set_index('name', inplace=True)
 
 """
-Pandas is one of the main staple of data analysis in the 
-scientific python world 
+Pandas is one of the main staple of data analysis in the
+scientific python world
 
 It's a way of dealing with Dataframe
-there's an impolementation od dataframe in most programming languages 
+there's an impolementation od dataframe in most programming languages
 
 The dataframe "data" conteins infos about people. it's basically a table
 
@@ -39,20 +40,20 @@ data
 
 """
 the most commonly used is the tidyed formula:
-    there is a very detailed paper about it 
+    there is a very detailed paper about it
     It's a way to organize data in order for them to be easier to read.
-    
+
 TIDY DATA
     every table is representing a specific kind of measurments
     we want to store as much metadata as possbile.
-    every measured value is a comlumn 
+    every measured value is a comlumn
     every observed unit is a row
 
 """
 #%%
 
 # skipped cell about hierarchical indexes
-# Righe e colonne possono avere indici **GERARCHICI**, 
+# Righe e colonne possono avere indici **GERARCHICI**,
 # in cui ho più livelli di indicizzazione delle mie informazioni
 
 import pandas as pd
@@ -99,14 +100,14 @@ data = pd.DataFrame([('Andrea', '2015', 'residenza', 'Rimini', 'via stretta 20')
                     ], columns=['nome', 'anno', 'tipologia', 'città', 'indirizzo']
                     )
 
-data 
+data
 
 """
-that's what a (non perfect) tidy dataframe may look. Ther's no correct solution 
+that's what a (non perfect) tidy dataframe may look. Ther's no correct solution
 abou thow to store data.
 
 tidy is a way of storing, it might be not the ideal one.
-usaully is considered th ebest way 
+usaully is considered th ebest way
 """
 
 #%%
@@ -114,14 +115,14 @@ usaully is considered th ebest way
 """
 Panda allow to manioulate dataframe iin python:
     numpy provide dataStructure (ndarry)
-    
-    Pandas give you adtaaFrame and Series 
-    
+
+    Pandas give you adtaaFrame and Series
+
     Pandas read and write almost all type of tabular format
-    
-    
+
+
 """
-import numpy as np 
+import numpy as np
 import pandas as pd
 
 
@@ -161,10 +162,10 @@ wikitables = pd.read_html(page,)
 #%%
 
 """
-Manipulation 
+Manipulation
 """
-import numpy as np 
-import pandas as pd 
+import numpy as np
+import pandas as pd
 
 wiki = "https://it.wikipedia.org/wiki/"
 url_popolazione = wiki + "Comuni_d%27Italia_per_popolazione"
@@ -191,7 +192,7 @@ g.aggregate([np.mean, np.std, pd.Series.count])
 Seaborn
 """
 
-import pandas as pd 
+import pandas as pd
 import numpy as np
 
 url = 'https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv'
@@ -202,8 +203,8 @@ iris.info()
 import seaborn as sns
 
 """
-it changes the default behaviour of matplot lib. you can change it by changing 
-the style from matplotlib 
+it changes the default behaviour of matplot lib. you can change it by changing
+the style from matplotlib
 """
 
 
@@ -222,7 +223,7 @@ automatic species separator by colour etc...
 
 #%%
 """
-Splitting by species 
+Splitting by species
 """
 
 sns.lmplot('sepal_length',
@@ -230,9 +231,9 @@ sns.lmplot('sepal_length',
                data=iris,
                col='species')
 
-#%% 
+#%%
 """
-Splittin byrow 
+Splittin byrow
 """
 
 sns.lmplot('sepal_length',
@@ -258,36 +259,10 @@ fg = sns.FacetGrid(data=iris,
                        aspect=0.9)
 fg.map(plt.scatter,
        'sepal_length',
-       'sepal_width', 
+       'sepal_width',
        s=50)
 fg.map(sns.regplot,
        'sepal_length',
-       'sepal_width', 
+       'sepal_width',
        scatter=False)
 fg.add_legend();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
