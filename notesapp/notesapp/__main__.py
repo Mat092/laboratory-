@@ -10,7 +10,7 @@ class Notes(cli.Application):
     "simple notes handler"
 
     PROGNAME = "Notes"
-    VERSION = "0.1"
+    VERSION = "0.2"
 
     def main(self):
         if not self.nested_command:
@@ -23,7 +23,8 @@ class add(cli.Application):
 
     priority = cli.Flag(["p","prioritize"], help = "if given, it will add a danger mark to the note")
 
-    def main(self, nota: str):
+    def main(self, *toadd: str):
+        nota = " ".join(toadd)
         if not os.path.exists(file):
             f = open(file,"w+")
             f = open(file,"a")
@@ -51,8 +52,8 @@ class show(cli.Application):
 class find(cli.Application):
     "search on notes file for keywords"
 
-    def main(self, key: str):
-        key = key.lower()
+    def main(self, *keywords: str):
+        key = " ".join(keywords).lower()
         found = 0
         if not os.path.exists(file):
             print("no notes.txt file found")
@@ -68,8 +69,8 @@ class find(cli.Application):
 class done(cli.Application):
     "check the notes that has been done, ask for a keyword"
 
-    def main(self, key: str):
-        key = key.lower()
+    def main(self, *keywords: str):
+        key = " ".join(keywords).lower()
         found = 0
         if not os.path.exists(file):
             print("no notes.txt file found, add a note to create it")
@@ -102,13 +103,14 @@ class clear(cli.Application):
 
     done_clear = cli.Flag(["d","done"], help = "it will clear ticked notes")
 
-    def main(self, key : str = None):
+    def main(self, *keywords : str):
         if not os.path.exists(file):
             print("no notes.txt file found, add a note to create it")
-        elif key == None and not self.done_clear:
+        elif len(keywords) == 0 and not self.done_clear:
             rm = local["rm"]
             rm(file)
         elif self.done_clear:
+            key = " ".join(keywords)
             found = 0
             green_tick = colors.green | "\u2713"
             copy = path + "copynotes.txt"
@@ -128,6 +130,7 @@ class clear(cli.Application):
                 mv(copy, file)
         else :
             found = 0
+            key = " ".join(keywords)
             key = key.lower()
             copy = path + "copynotes.txt"
             c = open(copy,"w+")
