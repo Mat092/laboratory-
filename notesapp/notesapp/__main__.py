@@ -21,7 +21,8 @@ class Notes(cli.Application):
 class add(cli.Application):
     "add a note given a string of character"
 
-    priority = cli.Flag(["p","prioritize"], help = "if given, it will add a danger mark to the note")
+    priority = cli.Flag( ["p","prioritize"],
+                        help = "if given, it will add a danger mark to the note")
 
     def main(self, *toadd: str):
         nota = " ".join(toadd)
@@ -109,7 +110,7 @@ class clear(cli.Application):
         elif len(keywords) == 0 and not self.done_clear:
             rm = local["rm"]
             rm(file)
-        elif self.done_clear:
+        elif len(keywords) == 0 and self.done_clear:
             key = " ".join(keywords)
             found = 0
             green_tick = colors.green | "\u2713"
