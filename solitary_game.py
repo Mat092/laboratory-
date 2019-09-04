@@ -40,6 +40,7 @@ def check_three():
         if th in deck[2:41:3]:
             count += 1
     return count
+    
 # first implementation with for loops
 
 def simulation():
